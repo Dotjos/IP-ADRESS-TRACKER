@@ -587,12 +587,12 @@ video {
   height: 75%;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .h-full {
   height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .w-1\/12 {
@@ -774,20 +774,16 @@ video {
     background-image: url('./images/pattern-bg-desktop.png');
   }
 
-  .lg\:p-3 {
-    padding: 0.75rem;
+  .lg\:p-0 {
+    padding: 0px;
   }
 
   .lg\:p-1 {
     padding: 0.25rem;
   }
 
-  .lg\:p-2 {
-    padding: 0.5rem;
-  }
-
-  .lg\:p-0 {
-    padding: 0px;
+  .lg\:p-3 {
+    padding: 0.75rem;
   }
 
   .lg\:pt-3 {
