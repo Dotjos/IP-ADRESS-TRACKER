@@ -1,4 +1,4 @@
-import { fetchLocationData, titLayer } from "./model.js";
+import { fetchLocationData, titLayer, FetchuserIp } from "./model.js";
 import {
   displayIspDetails,
   displayLocationDetails,
@@ -12,12 +12,24 @@ const timeZoneSect = document.querySelector(".timeZone");
 const locationSect = document.querySelector(".locationText");
 const adresSect = document.querySelector(".adressText");
 const ipInput = document.querySelector(".ipValue");
-const map = L.map("map").setView([51.505, -0.09], 13);
-const marker = L.marker([51.5, -0.09]).addTo(map);
+// Initializing map
+const map = L.map("map").setView([0, 0], 13);
+
+async function initialPage() {
+  const userIp = await FetchuserIp();
+  const userInfo = await fetchLocationData(userIp);
+  renderSearchresult(userInfo);
+}
+
 let ipVal;
 function renderSearchresult(data) {
   const { ip, isp, location } = data;
-  const { country, region, timezone } = location;
+  const { country, region, timezone, lat, lng } = location;
+  //Set the mapview to this location
+  map.setView([lat, lng], 13);
+  //Set the marker to the view and add it to the map
+  L.marker([lat, lng]).addTo(map);
+
   displayIspDetails(ispSect, isp);
   displayLocationDetails(locationSect, region, country);
   displayTimeZoneDetails(timeZoneSect, timezone);
@@ -45,5 +57,5 @@ seachArr.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   titLayer(L, map);
-  // fetchLocationData(ipVal);
+  initialPage();
 });

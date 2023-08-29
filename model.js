@@ -12,7 +12,7 @@ export async function titLayer(L, map) {
 export async function fetchLocationData(ipadress) {
   try {
     const fetchData = await fetch(
-      `https://geo.ipify.org/api/v2/country?apiKey=at_Nw7x6J8cKePeGNjMO561KG4mEsE0R&ipAddress=${ipadress}`
+      `https://geo.ipify.org/api/v1?apiKey=at_Nw7x6J8cKePeGNjMO561KG4mEsE0R&ipAddress=${ipadress}`
     );
 
     if (!fetchData.ok) {
@@ -25,4 +25,16 @@ export async function fetchLocationData(ipadress) {
   }
 }
 
-// fetchLocationData();
+export async function FetchuserIp() {
+  try {
+    const data = await fetch(`https://api.ipify.org?format=json`);
+    if (data.ok) {
+      const response = await data.json();
+      return response.ip;
+    } else {
+      throw new error("WAhAHAHHAAHHA");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
