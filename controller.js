@@ -12,8 +12,14 @@ const timeZoneSect = document.querySelector(".timeZone");
 const locationSect = document.querySelector(".locationText");
 const adresSect = document.querySelector(".adressText");
 const ipInput = document.querySelector(".ipValue");
+
 // Initializing map
-const map = L.map("map").setView([0, 0], 13);
+
+const map = L.map("map", {
+  center: [0, 0],
+  zoom: 2,
+  zoomControl: false, // Disable default zoom control
+});
 const myIcon = L.icon({
   iconUrl: "./images/icon-location.svg",
   iconSize: [30, 30],
@@ -57,10 +63,11 @@ function inputValidity(ipValue) {
 
 seachArr.addEventListener("click", () => {
   ipVal = ipInput.value;
-  inputValidity(ipVal);
-  fetchLocationData(ipVal).then((data) => {
-    renderSearchresult(data);
-  });
+  if (inputValidity(ipVal)) {
+    fetchLocationData(ipVal).then((data) => {
+      renderSearchresult(data);
+    });
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
