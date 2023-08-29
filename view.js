@@ -34,3 +34,32 @@ export function displayIspDetails(isp, ispText) {
   }
   isp.appendChild(isph1);
 }
+
+export function errMapDisp(map) {
+  const mapErrHi = document.createElement("h1");
+  mapErrHi.classList.add(
+    "text-lg",
+    "font-bold",
+    "text-DarkGray",
+    "text-center",
+    "mt-52",
+    "lg:text-4xl"
+  );
+  mapErrHi.textContent = "Sorry,Couldn't load map,try again.";
+  // while (map.firstChild) {
+  //   map.removeChild(map.firstChild);
+  // }
+  map.appendChild(mapErrHi);
+}
+
+export function errDataFetch(errSect, errText) {
+  const errHi = document.createElement("h1");
+  errHi.textContent = errText;
+  errSect.appendChild(errHi);
+}
+
+export function errUserDataFetch(errSect, errText) {
+  const errHi = document.createElement("h1");
+  errHi.textContent = errText;
+  errSect.appendChild(errHi);
+}

@@ -1,11 +1,11 @@
-export async function titLayer(L, map) {
+export async function titLayer(L, map, errFunc) {
   try {
     await L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "© OpenStreetMap",
     }).addTo(map);
   } catch (err) {
-    console.error(err);
+    errFunc();
   }
 }
 
@@ -16,12 +16,12 @@ export async function fetchLocationData(ipadress) {
     );
 
     if (!fetchData.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("Kindly check your network and try again");
     }
     const data = await fetchData.json();
     return data;
   } catch (err) {
-    console.error(err);
+    // throw err;
   }
 }
 
@@ -32,9 +32,9 @@ export async function FetchuserIp() {
       const response = await data.json();
       return response.ip;
     } else {
-      throw new error("WAhAHAHHAAHHA");
+      // throw new error("Failed to fetch user IP");
     }
   } catch (err) {
-    console.error(err);
+    // throw err;
   }
 }

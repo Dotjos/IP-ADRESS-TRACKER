@@ -4,6 +4,9 @@ import {
   displayLocationDetails,
   displayipAdressDetails,
   displayTimeZoneDetails,
+  errMapDisp,
+  errDataFetch,
+  errUserDataFetch,
 } from "./view.js";
 const seachArr = document.querySelector(".seachArr");
 const errMsg = document.querySelector(".errMsg");
@@ -12,6 +15,8 @@ const timeZoneSect = document.querySelector(".timeZone");
 const locationSect = document.querySelector(".locationText");
 const adresSect = document.querySelector(".adressText");
 const ipInput = document.querySelector(".ipValue");
+const mapSect = document.querySelector("#map");
+const locInfo = document.querySelector(".locInfo");
 
 // Initializing map
 
@@ -29,9 +34,14 @@ const myIcon = L.icon({
   shadowAnchor: [22, 94],
 });
 async function initialPage() {
-  const userIp = await FetchuserIp();
-  const userInfo = await fetchLocationData(userIp);
-  renderSearchresult(userInfo);
+  try {
+    const userIp = await FetchuserIp();
+    const userInfo = await fetchLocationData(userIp);
+    renderSearchresult(userInfo);
+  } catch (err) {
+    errDataFetch(locInfo, err);
+    errUserDataFetch(locInfo, err);
+  }
 }
 
 let ipVal;
@@ -71,6 +81,6 @@ seachArr.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  titLayer(L, map);
+  titLayer(L, map, errMapDisp(mapSect));
   initialPage();
 });
