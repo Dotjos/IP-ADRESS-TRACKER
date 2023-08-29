@@ -14,7 +14,14 @@ const adresSect = document.querySelector(".adressText");
 const ipInput = document.querySelector(".ipValue");
 // Initializing map
 const map = L.map("map").setView([0, 0], 13);
-
+const myIcon = L.icon({
+  iconUrl: "./images/icon-location.svg",
+  iconSize: [30, 30],
+  iconAnchor: [22, 94],
+  popupAnchor: [-3, -76],
+  shadowSize: [68, 95],
+  shadowAnchor: [22, 94],
+});
 async function initialPage() {
   const userIp = await FetchuserIp();
   const userInfo = await fetchLocationData(userIp);
@@ -28,8 +35,7 @@ function renderSearchresult(data) {
   //Set the mapview to this location
   map.setView([lat, lng], 13);
   //Set the marker to the view and add it to the map
-  L.marker([lat, lng]).addTo(map);
-
+  L.marker([lat, lng], { icon: myIcon }).addTo(map);
   displayIspDetails(ispSect, isp);
   displayLocationDetails(locationSect, region, country);
   displayTimeZoneDetails(timeZoneSect, timezone);
@@ -42,8 +48,10 @@ function inputValidity(ipValue) {
 
   if (ipAddressRegex.test(ipValue) || domainRegex.test(ipValue)) {
     errMsg.classList.add("hidden");
+    return true;
   } else {
     errMsg.classList.remove("hidden");
+    return false;
   }
 }
 

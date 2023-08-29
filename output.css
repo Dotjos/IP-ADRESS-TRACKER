@@ -859,6 +859,10 @@ video {
   height: 100vh;
 }
 
+.h-4\/5 {
+  height: 80%;
+}
+
 .w-1\/12 {
   width: 8.333333%;
 }
@@ -1956,6 +1960,10 @@ video {
   padding: 0.75rem;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -2449,6 +2457,16 @@ video {
 .content-\[\'this-is-also-valid\]-weirdly-enough\'\] {
   --tw-content: 'this-is-also-valid]-weirdly-enough';
   content: var(--tw-content);
+}
+
+@keyframes rotateOnLoad {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 640px) {
