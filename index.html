@@ -36,6 +36,9 @@
         <h1 class="text-center text-white font-medium text-lg">
           IP Address Tracker
         </h1>
+        <div class="errMsg text-xs hidden">
+          <h1 class="text-center">Invalid IP address or domain</h1>
+        </div>
       </div>
 
       <div
@@ -50,13 +53,13 @@
             <div class="w-11/12 mt-auto mb-auto">
               <input
                 type="text"
-                class="w-full focus:outline-none text-xs lg:text-base p-3"
+                class="w-full focus:outline-none text-xs lg:text-base p-3 ipValue"
                 placeholder="Search for any IP address or domain"
               />
             </div>
 
             <div
-              class="w-1/12 bg-black h-full flex justify-center items-center"
+              class="w-1/12 bg-black hover:bg-VeryDarkGray h-full flex justify-center items-center seachArr"
             >
               <img src="./images/icon-arrow.svg" alt="" class="" />
             </div>
@@ -72,7 +75,7 @@
                 >
                   IP Address
                 </h1>
-                <h1 class="text-VeryDarkGray font-medium lg:text-xl">
+                <h1 class="text-VeryDarkGray font-medium lg:text-xl adressText">
                   192.212.174.101
                 </h1>
               </div>
@@ -83,7 +86,9 @@
                 >
                   Location
                 </h1>
-                <h1 class="text-VeryDarkGray font-medium lg:text-xl">
+                <h1
+                  class="text-VeryDarkGray font-medium lg:text-xl locationText"
+                >
                   Brooklyn,NY 100001
                 </h1>
               </div>
@@ -94,7 +99,7 @@
                 >
                   Timezone
                 </h1>
-                <h1 class="text-VeryDarkGray font-medium lg:text-xl">
+                <h1 class="text-VeryDarkGray font-medium lg:text-xl timeZone">
                   UTC -6:00
                 </h1>
               </div>
@@ -105,7 +110,7 @@
                 >
                   ISP
                 </h1>
-                <h1 class="text-VeryDarkGray font-medium lg:text-xl">
+                <h1 class="text-VeryDarkGray font-medium lg:text-xl isp">
                   SpaceX starlink
                 </h1>
               </div>
