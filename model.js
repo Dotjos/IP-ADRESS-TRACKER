@@ -1,5 +1,3 @@
-import { apiKey } from "./key.js";
-
 export async function titLayer(L, map) {
   try {
     await L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -14,7 +12,7 @@ export async function titLayer(L, map) {
 export async function fetchLocationData(ipadress) {
   try {
     const fetchData = await fetch(
-      `https://geo.ipify.org/api/v2/country?apiKey=${apiKey}&ipAddress=${ipadress}`
+      `https://geo.ipify.org/api/v2/country?apiKey=at_Nw7x6J8cKePeGNjMO561KG4mEsE0R&ipAddress=${ipadress}`
     );
 
     if (!fetchData.ok) {
