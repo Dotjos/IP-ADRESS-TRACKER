@@ -4,7 +4,6 @@ import {
   displayLocationDetails,
   displayipAdressDetails,
   displayTimeZoneDetails,
-  clearInitVal,
   errDataFetch,
   errUserDataFetch,
   errMapDisp,
@@ -37,7 +36,7 @@ const myIcon = L.icon({
 });
 
 let ipVal;
-function renderSearchresult(data) {
+async function renderSearchresult(data) {
   const { ip, isp, location } = data;
   const { country, region, timezone, lat, lng } = location;
   //Set the mapview to this location
@@ -69,37 +68,51 @@ async function initialPage() {
     const userIp = await FetchuserIp();
     const userInfo = await fetchLocationData(userIp);
     renderSearchresult(userInfo);
+    detailInfo.classList.remove("hidden");
   } catch (err) {
-    errDataFetch(locInfo, err);
-    errUserDataFetch(locInfo, err);
+    console.log(err);
+    if (err.message === "Kindly check your network and try again") {
+      errDataFetch(detailInfo, err.message);
+    } else if (err.message === "Failed to fetch user IP,try again.") {
+      errUserDataFetch(detailInfo, err.message);
+    }
   } finally {
-    console.log("not Showing spin");
     spinner.classList.add("hidden");
     spinContainer.classList.add("hidden");
-    detailInfo.classList.remove("hidden");
   }
 }
 
 initialPage();
 
-seachArr.addEventListener("click", async () => {
+async function searchFunc() {
   ipVal = ipInput.value;
 
   try {
     if (inputValidity(ipVal)) {
-      detailInfo.classList.toggle("hidden");
+      detailInfo.classList.add("hidden");
       spinner.classList.remove("hidden");
       spinContainer.classList.remove("hidden");
       const resp = await fetchLocationData(ipVal);
       renderSearchresult(resp);
+      detailInfo.classList.remove("hidden");
     }
   } catch (err) {
-    // Handle errors if needed
+    errDataFetch(detailInfo, err.message);
   } finally {
     // Hide the spinner regardless of success or failure
     spinContainer.classList.add("hidden");
-    detailInfo.classList.toggle("hidden");
+
     spinner.classList.add("hidden");
+  }
+}
+
+seachArr.addEventListener("click", async () => {
+  searchFunc();
+});
+ipInput.addEventListener("keydown", async (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    searchFunc();
   }
 });
 

@@ -15,7 +15,6 @@ export async function fetchLocationData(ipadress) {
     const fetchData = await fetch(
       `https://geo.ipify.org/api/v1?apiKey=at_Nw7x6J8cKePeGNjMO561KG4mEsE0R&ipAddress=${ipadress}`
     );
-
     if (!fetchData.ok) {
       throw new Error("Kindly check your network and try again");
     } else {
@@ -23,24 +22,23 @@ export async function fetchLocationData(ipadress) {
       return data;
     }
   } catch (err) {
-    console.err(err);
-    throw err;
+    console.error(err);
+    throw new Error("Kindly check your network and try again");
   }
 }
 
 export async function FetchuserIp() {
-  await new Promise((resolve) => setTimeout(resolve, 7000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   try {
     const data = await fetch(`https://api.ipify.org?format=json`);
-
     if (data.ok) {
       const response = await data.json();
       return response.ip;
     } else {
-      throw new error("Failed to fetch user IP");
+      throw new Error("Failed to fetch user IP");
     }
   } catch (err) {
     console.error(err);
-    throw err;
+    throw new Error("Failed to fetch user IP,try again.");
   }
 }
