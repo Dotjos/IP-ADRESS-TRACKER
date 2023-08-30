@@ -29,8 +29,10 @@ export async function fetchLocationData(ipadress) {
 }
 
 export async function FetchuserIp() {
+  await new Promise((resolve) => setTimeout(resolve, 7000));
   try {
     const data = await fetch(`https://api.ipify.org?format=json`);
+
     if (data.ok) {
       const response = await data.json();
       return response.ip;

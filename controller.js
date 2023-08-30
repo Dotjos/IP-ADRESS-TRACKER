@@ -4,7 +4,7 @@ import {
   displayLocationDetails,
   displayipAdressDetails,
   displayTimeZoneDetails,
-  // errMapDisp,
+  clearInitVal,
   errDataFetch,
   errUserDataFetch,
   errMapDisp,
@@ -19,8 +19,8 @@ const ipInput = document.querySelector(".ipValue");
 const mapSect = document.querySelector("#map");
 const locInfo = document.querySelector(".locInfo");
 const spinner = document.querySelector(".spinner");
-
-// Initializing map
+const detailInfo = document.querySelector(".detailInfo");
+const spinContainer = document.querySelector(".spinContainer");
 
 const map = L.map("map", {
   center: [0, 0],
@@ -35,18 +35,6 @@ const myIcon = L.icon({
   shadowSize: [68, 95],
   shadowAnchor: [22, 94],
 });
-async function initialPage() {
-  try {
-    const userIp = await FetchuserIp();
-    const userInfo = await fetchLocationData(userIp);
-    renderSearchresult(userInfo);
-  } catch (err) {
-    errDataFetch(locInfo, err);
-    errUserDataFetch(locInfo, err);
-  } finally {
-    spinner.classList.add("hidden");
-  }
-}
 
 let ipVal;
 function renderSearchresult(data) {
@@ -75,17 +63,42 @@ function inputValidity(ipValue) {
   }
 }
 
+async function initialPage() {
+  try {
+    spinner.classList.remove("hidden");
+    const userIp = await FetchuserIp();
+    const userInfo = await fetchLocationData(userIp);
+    renderSearchresult(userInfo);
+  } catch (err) {
+    errDataFetch(locInfo, err);
+    errUserDataFetch(locInfo, err);
+  } finally {
+    console.log("not Showing spin");
+    spinner.classList.add("hidden");
+    spinContainer.classList.add("hidden");
+    detailInfo.classList.remove("hidden");
+  }
+}
+
+initialPage();
+
 seachArr.addEventListener("click", async () => {
   ipVal = ipInput.value;
 
   try {
-    console.log(spinner);
     if (inputValidity(ipVal)) {
+      detailInfo.classList.toggle("hidden");
+      spinner.classList.remove("hidden");
+      spinContainer.classList.remove("hidden");
       const resp = await fetchLocationData(ipVal);
       renderSearchresult(resp);
     }
   } catch (err) {
+    // Handle errors if needed
   } finally {
+    // Hide the spinner regardless of success or failure
+    spinContainer.classList.add("hidden");
+    detailInfo.classList.toggle("hidden");
     spinner.classList.add("hidden");
   }
 });
@@ -96,6 +109,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     errMapDisp(err);
   }
-
-  initialPage();
 });

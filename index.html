@@ -39,6 +39,10 @@
         <div class="errMsg text-xs hidden">
           <h1 class="text-center">Invalid IP address or domain</h1>
         </div>
+
+        <!-- <div
+          class="animate-spin spinner hidden rounded-full h-3 w-3 lg:h-5 lg:w-5 border-t-2 border-r-2 border-VeryDarkGray"
+        ></div> -->
       </div>
 
       <div
@@ -66,73 +70,66 @@
           </div>
 
           <div class="locInfo bg-white p-2 h-3/4 lg:h-2/4 rounded-xl">
-            <div
-              class="flex flex-col lg:text-start lg:flex-row items-center justify-center h-full ml-auto mr-auto"
-            >
-              <div class="lg:border-e-2 lg:p-2 lg:w-1/4 mt-auto mb-auto">
-                <h1
-                  class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
-                >
-                  IP Address
-                </h1>
-                <h1
-                  class="text-VeryDarkGray font-base text-sm lg:text-xl adressText"
-                >
-                  <div class="flex spinner justify-center items-center h-full">
-                    <div
-                      class="animate-spin rounded-full h-3 w-3 lg:h-5 lg:w-5 border-t-2 border-r-2 border-VeryDarkGray"
-                    ></div>
-                  </div>
-                </h1>
-              </div>
+            <div class="spinContainer flex justify-center items-center h-full">
+              <div
+                class="animate-spin spinner hidden rounded-full h-10 w-10 lg:h-10 lg:w-10 border-t-2 border-b-2 border-VeryDarkGray"
+              ></div>
+            </div>
+            <div class="detailInfo hidden h-full ml-auto mr-auto">
+              <div
+                class="flex flex-col items-center justify-center lg:text-start lg:flex-row"
+              >
+                <div class="lg:border-e-2 lg:p-2 lg:w-1/4 mt-auto mb-auto">
+                  <h1
+                    class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
+                  >
+                    IP Address
+                  </h1>
+                  <h1
+                    class="text-VeryDarkGray font-base text-sm lg:text-xl adressText"
+                  >
+                    <div class="flex justify-center items-center h-full"></div>
+                  </h1>
+                </div>
 
-              <div class="lg:border-e-2 lg:p-2 lg:w-1/4 mt-auto mb-auto">
-                <h1
-                  class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
-                >
-                  Location
-                </h1>
-                <h1
-                  class="text-VeryDarkGray font-base text-sm lg:text-xl locationText"
-                >
-                  <div class="flex spinner justify-center items-center h-full">
-                    <div
-                      class="animate-spin rounded-full h-3 w-3 lg:h-5 lg:w-5 border-t-2 border-r-2 border-VeryDarkGray"
-                    ></div>
-                  </div>
-                </h1>
-              </div>
+                <div class="lg:border-e-2 lg:p-2 lg:w-1/4 mt-auto mb-auto">
+                  <h1
+                    class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
+                  >
+                    Location
+                  </h1>
+                  <h1
+                    class="text-VeryDarkGray font-base text-sm lg:text-xl locationText"
+                  >
+                    <div class="flex justify-center items-center h-full"></div>
+                  </h1>
+                </div>
 
-              <div class="lg:border-e-2 lg:p-2 lg:w-1/4 mt-auto mb-auto">
-                <h1
-                  class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
-                >
-                  Timezone
-                </h1>
-                <h1
-                  class="text-VeryDarkGray text-sm font-base lg:text-xl timeZone"
-                >
-                  <div class="flex spinner justify-center items-center h-full">
-                    <div
-                      class="animate-spin rounded-full h-3 w-3 lg:h-5 lg:w-5 border-t-2 border-r-2 border-VeryDarkGray"
-                    ></div>
-                  </div>
-                </h1>
-              </div>
+                <div class="lg:border-e-2 lg:p-2 lg:w-1/4 mt-auto mb-auto">
+                  <h1
+                    class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
+                  >
+                    Timezone
+                  </h1>
+                  <h1
+                    class="text-VeryDarkGray text-sm font-base lg:text-xl timeZone"
+                  >
+                    <div class="flex justify-center items-center h-full"></div>
+                  </h1>
+                </div>
 
-              <div class="lg:w-1/4 mt-auto lg:p-2 mb-auto">
-                <h1
-                  class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
-                >
-                  ISP
-                </h1>
-                <h1 class="text-VeryDarkGray font-base text-sm lg:text-xl isp">
-                  <div class="flex spinner justify-center items-center h-full">
-                    <div
-                      class="animate-spin rounded-full h-3 w-3 lg:h-5 lg:w-5 border-t-2 border-r-2 border-VeryDarkGray"
-                    ></div>
-                  </div>
-                </h1>
+                <div class="lg:w-1/4 mt-auto lg:p-2 mb-auto">
+                  <h1
+                    class="uppercase text-DarkGray text-xxs lg:text-xs lg:text-start"
+                  >
+                    ISP
+                  </h1>
+                  <h1
+                    class="text-VeryDarkGray font-base text-sm lg:text-xl isp"
+                  >
+                    <div class="flex justify-center items-center h-full"></div>
+                  </h1>
+                </div>
               </div>
             </div>
           </div>
