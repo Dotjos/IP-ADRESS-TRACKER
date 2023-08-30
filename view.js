@@ -35,7 +35,7 @@ export function displayIspDetails(isp, ispText) {
   isp.appendChild(isph1);
 }
 
-export function errMapDisp(map) {
+export function errMapDisp(errText) {
   const mapErrHi = document.createElement("h1");
   mapErrHi.classList.add(
     "text-lg",
@@ -45,10 +45,8 @@ export function errMapDisp(map) {
     "mt-52",
     "lg:text-4xl"
   );
-  mapErrHi.textContent = "Sorry,Couldn't load map,try again.";
-  // while (map.firstChild) {
-  //   map.removeChild(map.firstChild);
-  // }
+  mapErrHi.textContent = errText;
+
   map.appendChild(mapErrHi);
 }
 

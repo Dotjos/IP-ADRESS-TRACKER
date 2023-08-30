@@ -4,9 +4,10 @@ import {
   displayLocationDetails,
   displayipAdressDetails,
   displayTimeZoneDetails,
-  errMapDisp,
+  // errMapDisp,
   errDataFetch,
   errUserDataFetch,
+  errMapDisp,
 } from "./view.js";
 const seachArr = document.querySelector(".seachArr");
 const errMsg = document.querySelector(".errMsg");
@@ -17,6 +18,7 @@ const adresSect = document.querySelector(".adressText");
 const ipInput = document.querySelector(".ipValue");
 const mapSect = document.querySelector("#map");
 const locInfo = document.querySelector(".locInfo");
+const spinner = document.querySelector(".spinner");
 
 // Initializing map
 
@@ -41,6 +43,8 @@ async function initialPage() {
   } catch (err) {
     errDataFetch(locInfo, err);
     errUserDataFetch(locInfo, err);
+  } finally {
+    spinner.classList.add("hidden");
   }
 }
 
@@ -71,16 +75,27 @@ function inputValidity(ipValue) {
   }
 }
 
-seachArr.addEventListener("click", () => {
+seachArr.addEventListener("click", async () => {
   ipVal = ipInput.value;
-  if (inputValidity(ipVal)) {
-    fetchLocationData(ipVal).then((data) => {
-      renderSearchresult(data);
-    });
+
+  try {
+    console.log(spinner);
+    if (inputValidity(ipVal)) {
+      const resp = await fetchLocationData(ipVal);
+      renderSearchresult(resp);
+    }
+  } catch (err) {
+  } finally {
+    spinner.classList.add("hidden");
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  titLayer(L, map, errMapDisp(mapSect));
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    titLayer(L, map);
+  } catch (err) {
+    errMapDisp(err);
+  }
+
   initialPage();
 });
