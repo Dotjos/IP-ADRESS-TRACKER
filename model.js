@@ -16,14 +16,14 @@ export async function fetchLocationData(ipadress) {
       `https://geo.ipify.org/api/v1?apiKey=at_Nw7x6J8cKePeGNjMO561KG4mEsE0R&ipAddress=${ipadress}`
     );
     if (!fetchData.ok) {
-      throw new Error("Kindly check your network and try again");
+      throw new Error("Kindly check your network and try again.");
     } else {
       const data = await fetchData.json();
       return data;
     }
   } catch (err) {
     console.error(err);
-    throw new Error("Kindly check your network and try again");
+    throw new Error("Kindly check your network and try again.");
   }
 }
 

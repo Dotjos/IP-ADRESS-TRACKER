@@ -71,13 +71,14 @@ async function initialPage() {
     detailInfo.classList.remove("hidden");
   } catch (err) {
     console.log(err);
-    if (err.message === "Kindly check your network and try again") {
+    if (err.message === "Kindly check your network and try again.") {
       errDataFetch(detailInfo, err.message);
     } else if (err.message === "Failed to fetch user IP,try again.") {
       errUserDataFetch(detailInfo, err.message);
     }
   } finally {
     spinner.classList.add("hidden");
+    detailInfo.classList.remove("hidden");
     spinContainer.classList.add("hidden");
   }
 }
@@ -94,15 +95,14 @@ async function searchFunc() {
       spinContainer.classList.remove("hidden");
       const resp = await fetchLocationData(ipVal);
       renderSearchresult(resp);
-      detailInfo.classList.remove("hidden");
     }
   } catch (err) {
     errDataFetch(detailInfo, err.message);
   } finally {
     // Hide the spinner regardless of success or failure
     spinContainer.classList.add("hidden");
-
     spinner.classList.add("hidden");
+    detailInfo.classList.remove("hidden");
   }
 }
 

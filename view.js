@@ -44,12 +44,14 @@ export function errMapDisp(errText) {
 export function errDataFetch(errSect, errText) {
   const errHi = document.createElement("h1");
   errHi.textContent = errText;
+  clearInitVal(errSect);
   errSect.appendChild(errHi);
 }
 
 export function errUserDataFetch(errSect, errText) {
   const errHi = document.createElement("h1");
   errHi.textContent = errText;
+  clearInitVal(errSect);
   errSect.appendChild(errHi);
 }
 
